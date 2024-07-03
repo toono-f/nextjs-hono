@@ -2,12 +2,12 @@
 import { ChangeEvent, FC, useState } from "react";
 import { todoType } from "@/types/todoType";
 
-interface Props {
+type Props = {
   todo: todoType;
   changeTodoText: (id: number, text: string) => void;
   toggleIsTodoDone: (id: number, done: boolean) => void;
   deleteTodoItem: (id: number) => void;
-}
+};
 
 const Todo: FC<Props> = ({
   todo,

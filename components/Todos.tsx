@@ -10,9 +10,9 @@ import {
   toggleTodo,
 } from "@/actions/todoActions";
 
-interface Props {
+type Props = {
   todos: todoType[];
-}
+};
 
 const Todos: FC<Props> = ({ todos }) => {
   // State to manage the list of todo items

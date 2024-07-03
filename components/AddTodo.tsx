@@ -1,9 +1,10 @@
 "use client";
+
 import { ChangeEvent, FC, useState } from "react";
 
-interface Props {
+type Props = {
   createTodo: (value: string) => void;
-}
+};
 
 const AddTodo: FC<Props> = ({ createTodo }) => {
   // State for handling input value
