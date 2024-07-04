@@ -1,5 +1,6 @@
 import db from "@/db/drizzle";
 import { todo } from "@/db/schema";
+import { eq } from "drizzle-orm";
 import { Hono } from "hono";
 
 const app = new Hono()
@@ -16,8 +17,33 @@ const app = new Hono()
       text: text,
     });
   })
-  // TODO: こちらもtodoActionから移し替える
-  .delete("/", async (c) => {})
-  .put("/", async (c) => {});
+  .delete("/", async (c) => {
+    const { id } = c.req.query();
+    if (!id) return;
+
+    await db.delete(todo).where(eq(todo.id, Number(id)));
+  })
+  .put("/done", async (c) => {
+    const { id } = c.req.query();
+    if (!id) return;
+
+    await db
+      .update(todo)
+      .set({
+        done: !todo.done,
+      })
+      .where(eq(todo.id, Number(id)));
+  })
+  .put("/", async (c) => {
+    const { id, text } = c.req.query();
+    if (!(id && text)) return;
+
+    await db
+      .update(todo)
+      .set({
+        text: text,
+      })
+      .where(eq(todo.id, Number(id)));
+  });
 
 export default app;
