@@ -13,3 +13,5 @@ yarn dev
 https://orm.drizzle.team/learn/tutorials/drizzle-with-neon
 
 https://orm.drizzle.team/learn/tutorials/drizzle-nextjs-neon
+
+https://neon.tech/docs/guides/drizzle-migrations
