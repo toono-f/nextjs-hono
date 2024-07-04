@@ -26,10 +26,13 @@ export const deleteTodo = async (id: number) => {
 };
 
 export const toggleTodo = async (id: number) => {
+  const todoItems = await db.select().from(todo).where(eq(todo.id, id));
+  const todoItem = todoItems[0];
+
   await db
     .update(todo)
     .set({
-      done: !todo.done,
+      done: !todoItem.done,
     })
     .where(eq(todo.id, id));
 
